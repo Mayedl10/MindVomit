@@ -6,17 +6,10 @@ def interpret(code):
     global memory
     ptr = 0
     numOfIn = 0
-    inp_lst = []
     memory = []
     for i in range(32768):
         memory.append(0)
-    
-    if "," in code:
-        inp = input("Input: ")
-        for char in inp:
-            inp_lst.append(char)
-
-        
+         
     for cmd in code:      
         if cmd == "+":
             if memory[ptr] == 255:
