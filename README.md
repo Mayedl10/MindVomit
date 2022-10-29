@@ -35,3 +35,7 @@ The Interpreter:
   - "exit" exits the interpreter.
   - "getMemory" prints the entire memory to the console. only works after a programm is executed. "run" always resets memory.
   - "help" prints help for all commands
+  
+  Versions:
+  Features [<>+-ob:;z] are available in all versions
+  Features [gwi] are only available in version 1.1.0 or higher
