@@ -37,5 +37,5 @@ The Interpreter:
   - "help" prints help for all commands
   
   Versions:
-  Features [<>+-ob:;z] are available in all versions
-  Features [gwi] are only available in version 1.1.0 or higher
+    - Features [<>+-ob:;z] are available in all versions
+    - Features [gwi] are only available in version 1.1.0 or higher
