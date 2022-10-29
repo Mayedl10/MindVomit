@@ -20,3 +20,10 @@ Operators:
 Examples:
   - "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++o" outputs "H"
   - "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++o+o----------------------------------------o" outputs "HI!"
+
+
+The Interpreter:
+  - "run <filename>" executes the programm from a file (I like the .mvt file extension because of MindVomiT but this should work with .txt files as well)
+  - "exit" exits the interpreter.
+  - "getMemory" prints the entire memory to the console. only works after a programm is executed. "run" always resets memory.
+  - "help" prints help for all commands
