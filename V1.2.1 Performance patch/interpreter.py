@@ -94,9 +94,7 @@ def interpret(code):
                 memory[ptr] = 0
 
             case "r": #reset memory to [0,0,0,0,0,0,...]
-                memory = []
-                for i in range(32768):
-                    memory.append(0)
+                memory = [0]*32768
 
             case "i": #input
                 memory[ptr] = globalinput
