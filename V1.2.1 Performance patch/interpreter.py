@@ -88,7 +88,10 @@ def interpret(code):
                 ptr = memory[ptr]
 
             case ";": #set current memory to pointer position
-                memory[ptr] = ptr
+                if 0 <= ptr <= 255:
+                    memory[ptr] = ptr
+                else:
+                    memory[ptr] = 255
 
             case "z": #set current memory to 0
                 memory[ptr] = 0
