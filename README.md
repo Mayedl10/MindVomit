@@ -28,6 +28,8 @@ Operators:
   - "{" same as "(" but corresponds to "}"
   - "}" same as "}" but corresponds to "}"
   
+  -This means there can only be 3 layers of nested loops!
+  
   How loops work:
   - memory = [0,0,0], ptr = 0
   - +++
