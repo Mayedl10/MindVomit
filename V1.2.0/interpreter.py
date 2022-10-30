@@ -1,7 +1,9 @@
-memory = [0]*32768 #thanks to u/F84-5
+memory = []
+for i in range(32768):
+    memory.append(0)
 
-ONLYvar = None
-globalinput = None #thanks to u/F84-5
+ONLYvar = "None"
+globalinput = "Empty"
 ptr = 0
 iterPos = 0
 
@@ -28,7 +30,7 @@ def interpret(code):
     
     if "i" in code:
         globalinput = 6969
-        while 0 <= globalinput <= 255: #thanks to u/F84-5
+        while globalinput > 255 or globalinput < 0:
             print("-------------------------------------------------")
             print("This programm requires user input.")
             print("Please enter an INTEGER from 0 to 255.")
@@ -48,7 +50,9 @@ def interpret(code):
     ptr = 0
     numOfIn = 0
     inp_lst = []
-    memory = [0]*32768
+    memory = []
+    for i in range(32768):
+        memory.append(0)
 
     iterPos = 0
     itering = True
@@ -154,43 +158,44 @@ while run:
     command = input("<BrainFuck> ")
     command_lst = command.split(" ")
     command = command_lst[0]
-
-    #thanks to u/F84-5 for suggesting match/case instead of if/elif/else
-    match command:
-        case "run":
-            code = ""
-            try:
-                code_f = command_lst[1]
-                with open(code_f) as f:
-                    code = "".join(f.readlines()) #thanks to u/F84-5
-
-                    
-                if code[-1] in ["x","}"]:  
-                    interpret(code)
-                else:
-                    print("Your code doesn't contain any closing-character")           
+    if command == "run":
+        code = ""
+        try:
+            code_f = command_lst[1]
+            with open(code_f) as f:
+                code__ = f.readlines()
+            for element in code__:
+                code += element
 
                 
-            except:
-                print("Something went wrong...")
+            if code[-1] in ["x","}"]:  
+                interpret(code)
+            else:
+                print("Your code doesn't contain any closing-character")           
 
-        case "exit":
-            run = False
+            
+        except:
+            print("Something went wrong...")
 
-        case "getMemory":
-            print(f"Memory: {memory}")
-            print(f"Variable: {ONLYvar}")
-            print(f"Input: {globalinput}") #thanks to u/F84-5
+    elif command == "exit":
+        run = False
 
-        case "help":
-            print("The commands are:")
-            print('"run": used to run a programm.')
-            print('"exit": exits the interpreter.')
-            print('"getMemory": prints the memory.')
-            print('"help": shows this')
+    elif command == "getMemory":
+        print(f"Memory: {memory}")
+        print(f"Variable: {ONLYvar}")
+        if globalinput == "Empty":
+            print("Input: Null")
+        else:
+            print(f"Input: {globalinput}")
 
-        case other:
-            print('Unknown command. Please try again or type "help"!')
-    #thanks to u/F84-5
+    elif command == "help":
+        print("The commands are:")
+        print('"run": used to run a programm.')
+        print('"exit": exits the interpreter.')
+        print('"getMemory": prints the memory.')
+        print('"help": shows this')
+
+    else:
+        print('Unknown command. Please try again or type "help"!')
 
     print()
