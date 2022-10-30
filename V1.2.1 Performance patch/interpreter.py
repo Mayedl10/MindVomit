@@ -52,95 +52,100 @@ def interpret(code):
 
     iterPos = 0
     itering = True
-    while itering:
+      while itering:
 
         #operators
+        #thanks to u/F84-5 for suggesting match/case instead of if/elif/else
+
+        codeAtIterPos = code[iterPos]
+        match codeAtIterPos:
         
-        if code[iterPos] == "+":
-            if memory[ptr] == 255:
+            case "+":
+                if memory[ptr] == 255:
+                    memory[ptr] = 0
+                else:
+                    memory[ptr] += 1
+
+            case "-":
+                if memory[ptr] == 0:
+                    memory[ptr] = 255
+                else:
+                    memory[ptr] -= 1
+            
+            case ">":
+                ptr += 1
+                    
+            case "<":
+                ptr -= 1
+
+            case "o": #output
+                print(chr(memory[ptr]), end = "")
+
+            case "b": #back
+                ptr = 0
+                
+            case ":": #set pointer position to current memory
+                ptr = memory[ptr]
+
+            case ";": #set current memory to pointer position
+                memory[ptr] = ptr
+
+            case "z": #set current memory to 0
                 memory[ptr] = 0
-            else:
-                memory[ptr] += 1
 
-        elif code[iterPos] == "-":
-            if memory[ptr] == 0:
-                memory[ptr] = 255
-            else:
-                memory[ptr] -= 1
-        
-        elif code[iterPos] == ">":
-            ptr += 1
-                
-        elif code[iterPos] == "<":
-            ptr -= 1
+            case "r": #reset memory to [0,0,0,0,0,0,...]
+                memory = []
+                for i in range(32768):
+                    memory.append(0)
 
-        elif code[iterPos] == "o": #output
-            print(chr(memory[ptr]), end = "")
+            case "i": #input
+                memory[ptr] = globalinput
 
-        elif code[iterPos] == "b": #back
-            ptr = 0
-            
-        elif code[iterPos] == ":": #set pointer position to current memory
-            ptr = memory[ptr]
+            case "g": #get and write to only variable
+                ONLYvar = memory[ptr]
 
-        elif code[iterPos] == ";": #set current memory to pointer position
-            memory[ptr] = ptr
+            case "w": #write variable to current memory
+                memory[ptr] = ONLYvar
 
-        elif code[iterPos] == "z": #set current memory to 0
-            memory[ptr] = 0
+            #loops
 
-        elif code[iterPos] == "r": #reset memory to [0,0,0,0,0,0,...]
-            memory = []
-            for i in range(32768):
-                memory.append(0)
+            case "{":
+                l1_begin = iterPos
+                l1_ptr_begin = ptr
 
-        elif code[iterPos] == "i": #input
-            memory[ptr] = globalinput
-
-        elif code[iterPos] == "g": #get and write to only variable
-            ONLYvar = memory[ptr]
-
-        elif code[iterPos] == "w": #write variable to current memory
-            memory[ptr] = ONLYvar
-
-        #loops
-
-        elif code[iterPos] == "{":
-            l1_begin = iterPos
-            l1_ptr_begin = ptr
-
-        elif code[iterPos] == "}":
-            if memory[l1_ptr_begin] != 0:
-                iterPos = l1_begin
-
-            
-
-        elif code[iterPos] == "[":
-            l2_begin = iterPos
-            l2_ptr_begin = ptr
-
-        elif code[iterPos] == "]":
-            if memory[l2_ptr_begin] != 0:
-                iterPos = l2_begin
+            case "}":
+                if memory[l1_ptr_begin] != 0:
+                    iterPos = l1_begin
 
                 
 
-        elif code[iterPos] == "(":
-            l3_begin = iterPos
-            l3_ptr_begin = ptr
+            case "[":
+                l2_begin = iterPos
+                l2_ptr_begin = ptr
 
-        elif code[iterPos] == ")":
-            if memory[l3_ptr_begin] != 0:
-                iterPos = l3_begin
+            case "]":
+                if memory[l2_ptr_begin] != 0:
+                    iterPos = l2_begin
 
-        #enc chars
+                    
 
-        elif code[iterPos] == "?": #end char for endless running
-            iterPos = 0
+            case "(":
+                l3_begin = iterPos
+                l3_ptr_begin = ptr
 
-        elif code[iterPos] == "x": #end char for ending execution
-            itering = False
+            case ")":
+                if memory[l3_ptr_begin] != 0:
+                    iterPos = l3_begin
 
+            #enc chars
+
+            case "?": #end char for endless running
+                iterPos = 0
+
+            case "x": #end char for ending execution
+                itering = False
+                
+            #thanks to u/F84-5 for suggesting match/case instead of if/elif/else
         iterPos += 1          
 
 
@@ -158,14 +163,13 @@ while run:
     #thanks to u/F84-5 for suggesting match/case instead of if/elif/else
     match command:
         case "run":
-            code = ""
             try:
                 code_f = command_lst[1]
                 with open(code_f) as f:
                     code = "".join(f.readlines()) #thanks to u/F84-5
 
                     
-                if code[-1] in ["x","}"]:  
+                if code[-1] in ["x","?"]:  
                     interpret(code)
                 else:
                     print("Your code doesn't contain any closing-character")           
