@@ -19,15 +19,49 @@ Operators:
   - "i" A constant which gets defined before running the code. "Input"
   
   The constant and the variable can only hold a value from "0" to "255"
+  
+ Loops:
+  - "(" signals the opening of a loop. Corresponds to ")".
+  - ")" signals the closing of a loop. Corresponds to "(".
+  - "[" same as "(" but corresponds to "]"
+  - "]" same as ")" but corresponds to "["
+  - "{" same as "(" but corresponds to "}"
+  - "}" same as "}" but corresponds to "}"
+  
+  How loops work:
+  - memory = [0,0,0], ptr = 0
+  - +++
+  - memory = [3,0,0], ptr = 0
+  - (>+++
+  - memory = [3,3,0], ptr = 1
+  - <-)
+  - memory = [2,3,0], ptr = 0
+  - ...
+  
+  The loop gets executed until the initial memory position = 0
+  - +++(>+++<-)x would result in 
+  - memory = [0,9,0] and ptr = 0
+  - +++(>+++<-x) would result in an error
+  - +++(>+++<-x)x would result in
+  - memory = [2,3,0]
+  
+  
+  
+Closing-characters:
+  - "x" a character that quits the execution of a programm.
+  - "?" a character that converts the programm into an endless loop,
+  - The last symbol in a script must always be one of these closing-characters.
+  - They can be placed anywhere in the code but one of them must be the last character of any script. "x" can be useful when using loops as if-statements.
 
 
 
 Examples:
-  - "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++o" outputs "H"
-  - "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++o+o----------------------------------------o" outputs "HI!"
+  - "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ox" outputs "H"
+  - "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++o+o----------------------------------------ox" outputs "HI!"
   - "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++go>w+og>w+og>w+og>w+og>w+og>w+og>w+og>w+og>w+og>w+og>w+og>w+og>w+og>w+og>
-w+og>w+og>w+og>w+og>w+og>w+og>w+og>w+og>w+og>w+og>w+og" outputs the alphabet in capital letters.
-  - "igo>w+og>w+og>w+og>w+og>w+og>w+og>w+og>w+og>w+og>w+og>w+og>w+og>w+og>w+og>w+og>w+og>w+og>w+og>w+og>w+og>w+og>w+og>w+og>w+og>w+og" outputs the alphabet in capital letters if the constant is assigned as "65"
+w+og>w+og>w+og>w+og>w+og>w+og>w+og>w+og>w+og>w+og>w+ogx" outputs the alphabet in capital letters.
+  - "igo>w+og>w+og>w+og>w+og>w+og>w+og>w+og>w+og>w+og>w+og>w+og>w+og>w+og>w+og>w+og>w+og>w+og>w+og>w+og>w+og>w+og>w+og>w+og>w+og>w+ogx" outputs the alphabet in capital letters if the constant is assigned as "65"
+  - "+++++++(>++++++++++o<-)x" outputs "¶▲(2<F"
 
 
 The Interpreter:
@@ -39,3 +73,4 @@ The Interpreter:
 Versions:
   - Features [<>+-ob:;z] are available in all versions
   - Features [gwi] are only available in version 1.1.0 or higher
+  - Features [x?] and loops are only available in versions 1.2.0 or higher
