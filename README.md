@@ -1,7 +1,7 @@
 # MindVomit
-A minimalistic interpreted programming language, inspired by BrainFuck. It doesn't need fancy stuff like functions or loops!
+A minimalistic interpreted programming language, inspired by BrainFuck. It doesn't need fancy stuff like functions or classes!
 
-this language is based on an array with 32768 "slots". Each is "0" by default and can have a maximum value of "255". There is also a "pointer" that indicates your position in the array. By default it is at position "0".
+This language is based on an array with 32768 "slots". Each is "0" by default and can have a maximum value of "255". There is also a "pointer" that indicates your position in the array. By default it is at position "0".
 
 Operators:
   - ">" Moves the pointer one slot to the right.
