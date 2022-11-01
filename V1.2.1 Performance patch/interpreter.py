@@ -1,6 +1,6 @@
 memory = [0]*32768 #thanks to u/F84-5
 
-ONLYvar = None
+ONLYvar = 0
 globalinput = None #thanks to u/F84-5
 ptr = 0
 iterPos = 0
