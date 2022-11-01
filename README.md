@@ -17,9 +17,15 @@ Operators:
   - "g" Sets the only available variable to the value of the currently selected slot.
   - "w" Sets the value of the currently selected slot to the only variables value
   - "i" A constant which gets defined before running the code. "Input"
+  - "n" Newline, enters a new line in output
   
   The constant and the variable can only hold a value from "0" to "255"
-  
+
+ If-statements:
+  - "L" opens an if-statement
+  - "J" closes an if-statement
+  - The code inside an if statement only runs if the currently selected slot at the "L" is not "0".
+
  Loops:
   - "(" signals the opening of a loop. Corresponds to ")".
   - ")" signals the closing of a loop. Corresponds to "(".
@@ -64,6 +70,8 @@ Examples:
 w+og>w+og>w+og>w+og>w+og>w+og>w+og>w+og>w+og>w+og>w+ogx" outputs the alphabet in capital letters.
   - "igo>w+og>w+og>w+og>w+og>w+og>w+og>w+og>w+og>w+og>w+og>w+og>w+og>w+og>w+og>w+og>w+og>w+og>w+og>w+og>w+og>w+og>w+og>w+og>w+og>w+ogx" outputs the alphabet in capital letters if the constant is assigned as "65"
   - "+++++++(>++++++++++o<-)x" outputs "¶▲(2<F"
+  - "L++++++++++++++++++++++++++++++++++oJx" wont output anything because the currently selected slot is "0" while the interpreter is looking at the "L"
+  - "+L++++++++++++++++++++++++++++++++++oJx" will output "#" because the currently selected slot is not "0" while the interpreter is looking at the "L"
 
 
 The Interpreter:
@@ -71,8 +79,10 @@ The Interpreter:
   - "exit" exits the interpreter.
   - "getMemory" prints the entire memory to the console. only works after a programm is executed. "run" always resets memory.
   - "help" prints help for all commands
+  - "iterMemory" iterates through the memory the last program left behind and outputs the position in memory of every non-zero value.
   
 Versions:
   - Features [<>+-ob:;z] are available in all versions
   - Features [gwi] are only available in version 1.1.0 or higher
   - Features [x?] and loops are only available in versions 1.2.0 or higher
+  - Features [nLJ] and the "iterMemory"-command are only available in versions 1.3.0 or higher
