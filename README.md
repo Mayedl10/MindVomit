@@ -16,7 +16,7 @@ Operators:
   - "r" Resets every slot in memory to "0".
   - "g" Sets the only available variable to the value of the currently selected slot.
   - "w" Sets the value of the currently selected slot to the only variables value
-  - "i" A constant which gets defined before running the code. "Input"
+  - "i" A constant which gets defined before running the code. Only available in versions lower than 1.3.0
   - "n" Newline, enters a new line in output
   
   The constant and the variable can only hold a value from "0" to "255"
@@ -86,3 +86,4 @@ Versions:
   - Features [gwi] are only available in version 1.1.0 or higher
   - Features [x?] and loops are only available in versions 1.2.0 or higher
   - Features [nLJ] and the "iterMemory"-command are only available in versions 1.3.0 or higher
+  - Features [i] are only available in versions lower than 1.3.0
