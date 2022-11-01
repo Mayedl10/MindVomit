@@ -1,7 +1,6 @@
 memory = [0]*32768 #thanks to u/F84-5
 
 ONLYvar = None
-globalinput = None #thanks to u/F84-5
 ptr = 0
 iterPos = 0
 
@@ -15,7 +14,6 @@ l3_exists = False
 
 def interpret(code):
     global ONLYvar
-    global globalinput
     global ptr
     
     global l1_ptr_begin
@@ -27,24 +25,6 @@ def interpret(code):
     l3_ptr_begin = 0
 
     execute_op = True
-    
-    if "i" in code:
-        globalinput = 6969
-        while 0 <= globalinput <= 255: #thanks to u/F84-5
-            print("-------------------------------------------------")
-            print("This programm requires user input.")
-            print("Please enter an INTEGER from 0 to 255.")
-            print("That integer will be used for the entire programm.")
-            print("--------------------------------------------------")
-            try:
-                globalinput = int(input("Input: "))
-            except:
-                print()
-                print('Invalid datatype. Input must be type "int"')
-
-
-    else:
-        globalinput = None
     
     global memory
     ptr = 0
@@ -116,10 +96,6 @@ def interpret(code):
                     memory = []
                     for i in range(32768):
                         memory.append(0)
-
-            case "i": #input
-                if execute_op:
-                    memory[ptr] = globalinput
 
             case "g": #get and write to only variable
                 if execute_op:
@@ -219,7 +195,6 @@ while run:
         case "getMemory":
             print(f"Memory: {memory}")
             print(f"Variable: {ONLYvar}")
-            print(f"Input: {globalinput}") #thanks to u/F84-5
 
         case "iterMemory":
             iterMemoryCount = 0
