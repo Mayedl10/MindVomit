@@ -16,10 +16,16 @@ Operators:
   - "r" Resets every slot in memory to "0".
   - "g" Sets the only available variable to the value of the currently selected slot.
   - "w" Sets the value of the currently selected slot to the only variables value
-  - "i" A constant which gets defined before running the code. Only available in versions lower than 1.3.0
+  - "i" Works differently in different versions.
+      - for versions 1.2.X and lower:
+          - A constant which gets defined before running the code. Only available in versions lower than 1.3.0
+      - for versions 1.4.X and higher:
+          - Sets the currently selected slots value to an input-integer in range 0-255. The data gets input at the time the "i" in the code gets executed.
   - "n" Newline, enters a new line in output
+  - "~" Sets the goto-entry-point at this position in code.
+  - "#" Jumps to the last created goto-entry-point in code
   
-  The constant and the variable can only hold a value from "0" to "255"
+  The input and the variable can only hold a value from "0" to "255"
 
  If-statements:
   - "L" opens an if-statement
