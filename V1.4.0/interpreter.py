@@ -196,7 +196,7 @@ def interpret(code):
 
 run = True
 while run:
-    command = input("<BrainFuck> ")
+    command = input("<MindVomit> ")
     command_lst = command.split(" ",1)
     command = command_lst[0]
 
